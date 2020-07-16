@@ -1,1 +1,1 @@
-# Template API
+# Template JWT

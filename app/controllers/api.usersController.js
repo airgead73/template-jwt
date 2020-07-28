@@ -46,14 +46,15 @@ exports.create = asyncHandler(async function(req, res, next) {
  */
 exports.read_many = asyncHandler(async function(req, res, next) {
 
-  const users = await User.find().sort({ createdAt: -1});
+  const { success, count, data } = res.locals.query_results;
   
   res
     .status(200)
     .json({
-      success: true,
+      success,
       msg: 'Read users',
-      users
+      count,
+      user: data
     });
 
 });

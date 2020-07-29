@@ -61,10 +61,10 @@ exports.read_many = asyncHandler(async function(req, res, next) {
 
 /**
  * @route   GET /api/users/:userID
- * @desc    Read single user
+ * @desc    Read one user
  * @access  private
  */
-exports.read_single = asyncHandler(async function(req, res, next) {
+exports.read_one = asyncHandler(async function(req, res, next) {
 
   const user = await User.findById(req.params.userID);
   

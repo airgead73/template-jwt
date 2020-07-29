@@ -3,12 +3,10 @@ const router = express.Router();
 const User = require('../models/User');
 
 const check_auth = require('../middleware/checkAuth');
-const check_restype = require('../middleware/checkResType');
 const handleQuery = require('../middleware/handleQuery');
 const { validationRules, validate } = require('../middleware/handleValidation')
 const users_controller = require('../controllers/api.usersController');
 
-router.use(check_restype);
 router.use(check_auth);
 
 router  
@@ -30,7 +28,7 @@ router
 
 router
   .route('/:userID')
-  .get(users_controller.read_single)
+  .get(users_controller.read_one)
   .put(users_controller.update)
   .delete(users_controller.delete);
 

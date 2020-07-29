@@ -18,6 +18,7 @@ const { RATE_LIMIT } = require('./config/config');
 const session = require('express-session');
 const { SESSION_EXP, SESSION_SECRET, ISDEV } = require('./config/config');
 const SessionMemory = require('memorystore')(session);
+const checkResType = require('./middleware/checkResType');
 const xss = require('xss-clean');
 
 /** 
@@ -73,6 +74,7 @@ app.engine('hbs', exphbs({
  app.use(cookieParser());
  app.use(flash());
  app.use(methodOverride('_method'));
+ app.use(checkResType);
  app.use(session({
   secret: SESSION_SECRET,
   resave: true,
@@ -106,6 +108,7 @@ if (ISDEV) {
  // api
 app.use('/api/users', require('./routes/api.usersRoutes'));
 app.use('/api/auth', require('./routes/api.authRoutes'));
+app.use('/api/authors', require('./routes/api.authorsRoutes'));
 
 // client
 app.use('/', require('./routes/client.indexRoutes'));

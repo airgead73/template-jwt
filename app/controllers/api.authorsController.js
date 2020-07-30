@@ -1,6 +1,6 @@
 const asyncHandler = require('../middleware/handleAsync');
 const Author = require('../models/Author');
-const User = require('../models/User');
+const { dropCollection } = require('../util/db');
 
 /**
  * @route   POST /api/authors
@@ -38,7 +38,7 @@ const User = require('../models/User');
 
 exports.read_many = asyncHandler(async function(req, res) {
 
-  const { success, count, data } = res.locals.query_results;  
+  //const { success, count, data } = res.locals.query_results;  
 
   res
     .status(200)
@@ -85,6 +85,7 @@ exports.update = asyncHandler(async function(req, res) {
   if(lname) authorFields.lname = lname;
   if(fname) authorFields.fname = fname;
   if(affiliation) authorFields.affiliation = affiliation;
+  if(name_titlepage) authorFields.name_titlepage = name_titlepage;
 
   console.log(authorFields);
 
@@ -161,4 +162,17 @@ exports.delete = asyncHandler(async function(req, res) {
   }); 
 
  });  
+
+exports.delete_collection = asyncHandler(async function(req, res) {
+
+  dropCollection('authors');
+
+  res
+    .status(200)
+    .json({
+      success: true,
+      msg: 'Collection dropped: authors'
+    });
+  
+});
 

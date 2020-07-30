@@ -109,10 +109,12 @@ if (ISDEV) {
 app.use('/api/users', require('./routes/api.usersRoutes'));
 app.use('/api/auth', require('./routes/api.authRoutes'));
 app.use('/api/authors', require('./routes/api.authorsRoutes'));
+app.use('/api/books', require('./routes/api.booksRoutes'));
 
 // client
 app.use('/', require('./routes/client.indexRoutes'));
 app.use('/users', require('./routes/client.usersRoutes'));
+app.use('/authors', require('./routes/client.authorsRoutes'));
 
 /**
  * @desc ERROR HANDLING

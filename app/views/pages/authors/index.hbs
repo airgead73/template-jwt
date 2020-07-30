@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-12 mb-3">
+  {{!-- <form action="/api/users" method="POST" class="card mx-auto shadow-sm" id="form_user_add">
+    <div class="card-header form-row">
+      <div class="col">
+        <legend>add user</legend>
+      </div>
+      <div class="col text-right">
+        <button type="submit" class="btn btn-primary">add <i class="fal fa-user-plus"></i></button> 
+      </div>      
+    </div>
+    <div class="card-body form-row">
+      {{#if errors}}
+      <div class="alert alert-danger">
+        <ul>
+        {{#each errors}}
+          <li>{{this}}</li>
+        {{/each}}
+        </ul>
+      </div>
+
+      {{/if}}
+      <div class="form-group col">
+        <label for="name">Name:</label>
+        <input 
+          type="name" 
+          name="name" 
+          class="form-control"
+          autocomplete="off"
+          required
+        >      
+        <div class="invalid-feedback">Add valid name.</div>
+      </div>      
+      <div class="form-group col">
+        <label for="email">Email address:</label>
+        <input 
+          type="email" 
+          name="email" 
+          class="form-control"
+          autocomplete="off"
+          required
+        >        
+        <div class="invalid-feedback">Add valid email.</div>        
+      </div>
+      <div class="form-group col">
+        <label for="password">Password:</label>
+        <input 
+          type="password" 
+          name="password" 
+          class="form-control"
+          autocomplete="off"
+          required
+        >
+        <div class="invalid-feedback">Add valid password.</div>        
+      </div>
+      <div class="form-group col">
+        <label for="confirm_password">Confirm Password:</label>
+        <input 
+          type="password" 
+          name="confirm_password" 
+          class="form-control"
+          autocomplete="off"   
+          required
+        >       
+        <div class="invalid-feedback">Does not match password.</div>        
+      </div>      
+    </div>
+    <div class="card-footer">
+           
+    </div> 
+  </form> --}}
+  </div>  
+  <div class="col-12">
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="2">Affiliation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each authors}}
+      <tr>
+        <td>{{this.listing}}</td>
+        <td>{{this.affiliation}}</td>
+        <td class="text-center" width="100px;">
+          <a class="btn btn-link btn-sm" href="/authors/{{this._id}}" title="see details for {{this.listing}}">
+            <i class="fal fa-edit fa-sm"></i>
+          </a>
+          <button
+            class="btn btn-link btn-sm"
+            data-toggle="modal" 
+            data-target="#deleteUserModal" 
+            data-user="{{this.listing}}"
+            data-action="/api/authors/{{this._id}}?_method=DELETE"
+            title="delete {{this.listing}}"
+          >
+            <i class="fal fa-times fa-sm"></i>
+          </button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>    
+   
+  </div>
+</div>
+

@@ -19,7 +19,10 @@ router
     // validationRules('createUser'),
     // validate,
     authors_controller.create
-    );
+  )
+  .delete(
+    authors_controller.delete_collection
+  );
 
 router
   .route('/:authorID')

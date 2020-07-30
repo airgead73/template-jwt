@@ -23,6 +23,13 @@ const validationRules = (method) => {
         }) 
       ];
       break; 
+    case 'createAuthor':
+      return [
+        body('fname', 'Enter first name.').not().isEmpty().trim().escape(),
+        body('lname', 'Enter last name').not().isEmpty().trim().escape(),
+        body('affiliation').optional()
+      ];
+      break;
     case 'signinUser':
       return [
         body('email', 'Enter valid email.').isEmail().normalizeEmail(),

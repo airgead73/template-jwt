@@ -10,17 +10,17 @@ const AuthorSchema = new mongoose.Schema({
   fname: {
     type: String
   },
-  dob: {
-    type: Date
+  name_titlepage: {
+    type: String
   },
-  dod: {
-    type: Date
+  affiliation: {
+    type: String
   },
-  age: {
-    type: Number
+  listing: {
+    type: String
   },
-  is_alive: {
-    type: Boolean
+  slug: {
+    type: String
   },
   createdAt: {
     type: Date,
@@ -28,18 +28,17 @@ const AuthorSchema = new mongoose.Schema({
   }
 });
 
-// Get authors age
 AuthorSchema.pre('save', function(next) {
+  let initial = (this.fname).charAt(0);
+  let listing = `${this.lname}, ${initial}`;
+  let slug = `${this.lname}_${this.fname}`;
+  slug = slug.toLowerCase();
 
-  console.log('calculate age')
-
-  if(this.dod) {
-    this.is_alive = false;
-  } else {
-    this.is_alive = true;
-  }
+  this.listing = listing;
+  this.slug = slug;
 
   next();
+
 });
 
 module.exports = mongoose.model('Author', AuthorSchema);

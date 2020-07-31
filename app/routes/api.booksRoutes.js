@@ -12,7 +12,7 @@ const books_controller = require('../controllers/api.booksController');
 router  
   .route('/')
   .get(
-    handleQuery(Book, { path: 'author_lead', select: 'listing'}),
+    handleQuery(Book, { path: 'author_lead', select: 'listing' }),
     books_controller.read_many
   )
   .post(

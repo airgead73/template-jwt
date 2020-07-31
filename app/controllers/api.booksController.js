@@ -23,6 +23,12 @@ const { dropCollection } = require('../util/db');
 
   await book.save();
 
+  if(res.locals.res_html) {
+    return res
+      .status(200)
+      .redirect('/books');
+  }
+
   res
     .status(200)
     .json({

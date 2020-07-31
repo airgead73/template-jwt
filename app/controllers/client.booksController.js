@@ -1,5 +1,5 @@
 const asyncHandler = require('../middleware/handleAsync');
-const Book = require('../models/Book');
+const Author = require('../models/Author');
 
 /**
  * @route   GET /books
@@ -10,6 +10,8 @@ exports.view_many = asyncHandler(async function(req, res, next) {
 
   const { success, count, data } = res.locals.query_results;
 
+  const authors = await Author.find();
+
   res
     .status(200)
     .render('pages/books/index',{
@@ -18,7 +20,8 @@ exports.view_many = asyncHandler(async function(req, res, next) {
       scripts: {
         table_delete: true
       },
-      books: data
+      books: data,
+      authors
   });
  
 });

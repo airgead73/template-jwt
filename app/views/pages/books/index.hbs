@@ -1,9 +1,9 @@
 <div class="row"> 
   <div class="col-12 col-md-4 mb-3">
-    <form action="/api/authors" method="POST" class="card mx-auto shadow-sm" id="form_author_add">
+    <form action="/api/books" method="POST" class="card mx-auto shadow-sm" id="form_book_add">
       <div class="card-header form-row">
         <div class="col">
-          <legend>add author</legend>
+          <legend>add book</legend>
         </div>
         <div class="col text-right">
           <button type="submit" class="btn btn-primary">add <i class="fal fa-user-plus"></i></button> 
@@ -21,41 +21,50 @@
 
         {{/if}}
         <div class="form-group col-12">
-          <label for="fname">First Name:</label>
+          <label for="title">Title:</label>
           <input 
             type="text" 
-            name="fname" 
+            name="title" 
             class="form-control"
             autocomplete="off"
-            placeholder="add first name"
+            placeholder="add title"
             required
           >      
           <div class="invalid-feedback">Add valid name.</div>
         </div>     
         <div class="form-group col-12">
-          <label for="lname">Last Name:</label>
+          <label for="edition">Edition:</label>
           <input 
-            type="text" 
-            name="lname" 
+            type="number" 
+            name="edition" 
             class="form-control"
             autocomplete="off"
-            placeholder="add last name"
+            placeholder="add last edition"
             required
           >      
-          <div class="invalid-feedback">Add valid name.</div>
+          <div class="invalid-feedback">Add edition.</div>
         </div>          
         <div class="form-group col-12">
-          <label for="affiliation">Affiliation:</label>
+          <label for="date_publication">Publication Date:</label>
           <input 
-            type="text" 
-            name="affiliation" 
+            type="date" 
+            name="date_publication" 
             class="form-control"
             autocomplete="off"
-            placeholder="add affiliation"
             required
           >        
-          <div class="invalid-feedback">Add affiliation.</div>        
+          <div class="invalid-feedback">Add date.</div>        
         </div>
+        <div class="form-group col-12">
+          <label for="author_lead">Lead Author:</label>
+            <select class="form-control" name="author_lead" id="author_lead">
+              <option value="choose author" disabled selected>choose author</option>
+              {{#each authors}}
+                <option value="{{this._id}}">{{this.listing}}</option>
+              {{/each}}
+            </select>     
+          <div class="invalid-feedback">Add date.</div>        
+        </div>        
     
       </div>
       <div class="card-footer">
@@ -68,32 +77,34 @@
       <thead>
         <tr>
           <th class="text-center" width="45px;">
-            <button id="btn_delete_many" data-delete="authors" class="btn btn-link btn-sm" disabled>
+            <button id="btn_delete_many" data-delete="books" class="btn btn-link btn-sm" disabled>
               <i class="fal fa-trash-alt"></i>
             </button>
           </th>
-          <th>Name 
-            <a href="/authors?sort=lname"><i class="fal fa-long-arrow-up fa-sm"></i></a>
-            <a href="/authors?sort=-lname"><i class="fal fa-long-arrow-down fa-sm"></i></a>
+          <th>Lead Author</th>
+          <th data-show="cell-sm">Title</th>
+          <th data-show="cell-sm" colspan="2">
+            publication date
+            <a href="/books?sort=date_publication"><i class="fal fa-long-arrow-up fa-sm"></i></a>
+            <a href="/books?sort=-date_publication"><i class="fal fa-long-arrow-down fa-sm"></i></a>
           </th>
-          <th colspan="2" data-show="cell-sm">Affiliation</th>
         </tr>
       </thead>
       <tbody>
-        {{#each authors}}
+        {{#each books}}
         <tr id="row_{{this.id}}">
           <td class="text-center">
             <input type="checkbox" name="to_delete" id="delete_{{this.id}}">
           </td>
-          <td>{{this.fname}} {{this.lname}}</td>
-          <td data-show="cell-sm">{{this.affiliation}}</td>
+          <td>{{this.author_lead.listing}}</td>
+          <td data-show="cell-sm">{{this.title}}, {{this.edition}}e</td>
+          <td data-show="cell-sm">{{formatDate this.date_publication 'MMMM Do, YYYY'}}</td>
           <td class="text-center" width="50px;">
-            <a href="/authors/{{this._id}}" title="review and update {{this.fname}} {{this.fname}}">
+            <a href="/books/{{this._id}}" title="Review and update {{this.title}}.">
               <i class="fal fa-edit"></i>
             </a>
           </td>
         </tr>
-
         {{/each}}
       </tbody>
     </table>  

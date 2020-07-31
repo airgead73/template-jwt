@@ -11,7 +11,7 @@ router.use(checkAuth);
 router
   .route('/')
   .get(
-    handleQuery(Book),
+    handleQuery(Book, { path: 'author_lead', select: 'listing' }),
     book_controller.view_many
   );
 

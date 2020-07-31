@@ -10,8 +10,6 @@ const handleQuery = (model, populate) => async (req, res, next) => {
   // loop over removeFields and delete them from reqQuery
   removeFields.forEach(param => delete reqQuery[param]);
 
-  console.log(reqQuery);
-
   // create query string
   let queryStr = JSON.stringify(reqQuery);
 

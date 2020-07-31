@@ -1,7 +1,5 @@
 (function userUpdate() {
 
-  console.log('user update');
-
   const form = document.getElementById('form_user_update');
   const submitBtn = form.querySelector('button');
   let inputs = document.querySelectorAll('input');

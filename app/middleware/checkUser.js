@@ -20,7 +20,6 @@ const checkUser = asyncHandler(async (req, res, next) => {
 
   // Check if user
   if(!user) {
-    console.log('wrong email');
     res.locals.authorization_fail = true;
     res.locals.error_arr = ['Invalid credentials'];
     return next();
@@ -30,7 +29,6 @@ const checkUser = asyncHandler(async (req, res, next) => {
   const isMatch = await user.matchPassword(password);
 
   if(!isMatch) {
-    console.log('wrong password');
     res.locals.authorization_fail = true;
     res.locals.error_arr = ['Invalid credentials'];
     return next();

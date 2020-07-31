@@ -51,8 +51,6 @@
 
     const URL = `/api/${btnDelete.getAttribute('data-delete')}/delete_many`;
 
-    console.log(idsToDelete);
-
     fetch(URL, {
       method: 'DELETE',
       headers: {

@@ -93,8 +93,6 @@ exports.update = asyncHandler(async function(req, res) {
   if(affiliation) authorFields.affiliation = affiliation;
   if(name_titlepage) authorFields.name_titlepage = name_titlepage;
 
-  console.log(authorFields);
-
   // Find author
   let author = await Author.findById(req.params.authorID);
 

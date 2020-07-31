@@ -109,8 +109,6 @@ exports.update = asyncHandler(async function(req, res, next) {
   if(name) contactFields.name = name;
   if(email) contactFields.email = email;
 
-  console.log(contactFields);
-
   // Find user
   let user = await User.findById(req.params.userID);
 

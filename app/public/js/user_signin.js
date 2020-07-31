@@ -1,7 +1,5 @@
 (function userSignin() {
 
-  console.log('user signin');
-
   const form = document.getElementById('form_user_signin');
   const submitBtn = form.querySelector('button');
   let inputs = document.querySelectorAll('input');

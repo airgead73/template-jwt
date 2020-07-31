@@ -25,6 +25,10 @@ router
   .route('/current')
   .get(users_controller.read_current);
 
+router
+  .route('/delete_many')
+  .delete(users_controller.delete_many);
+
 
 router
   .route('/:userID')

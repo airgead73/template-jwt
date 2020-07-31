@@ -7,16 +7,18 @@ const User = require('../models/User');
  * @access  private
  */
 exports.view_many = asyncHandler(async function(req, res, next) {
-  const users = await User.find().sort({ createdAt: -1 });
+
+  const { success, count, data } = res.locals.query_results;
   
   res
     .status(200)
     .render('pages/users/index',{
-      success: true,
-      msg: 'View users page',
-      title: 'users',
-      form_user_add: true,
-      users
+      success,
+      count,
+      scripts: {
+        table_delete: true
+      },
+      users: data
   });
  
 });

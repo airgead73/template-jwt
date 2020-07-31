@@ -7180,6 +7180,12 @@ a.text-dark:hover, a.text-dark:focus {
 main {
   padding-top: 2%; }
 
+[data-show="cell-sm"] {
+  display: none; }
+  @media (min-width: 567px) {
+    [data-show="cell-sm"] {
+      display: table-cell; } }
+
 .navbar-text {
   visibility: hidden; }
   @media (min-width: 567px) {

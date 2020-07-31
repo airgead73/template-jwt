@@ -15,4 +15,16 @@ router
     author_controller.view_many
   );
 
+router
+  .route('/:authorID')
+  .get(
+    author_controller.view_one
+  );
+
+router
+  .route('/:authorID/update')
+  .get(
+    author_controller.view_update
+  );   
+
 module.exports = router;

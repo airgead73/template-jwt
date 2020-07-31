@@ -1,5 +1,6 @@
 const asyncHandler = require('../middleware/handleAsync');
 const User = require('../models/User');
+const { dropCollection } = require('../util/db');
 
 /**
  * @route   POST /api/users
@@ -181,4 +182,33 @@ exports.delete = asyncHandler(async function(req, res, next) {
       msg: `${user.name} is deleted.`
   }); 
 
+});
+
+exports.delete_many = asyncHandler(async function(req, res) {
+
+  const { ids } = req.body;
+
+  console.log('ids: ', ids);
+
+  await User.deleteMany({ _id: {$in: ids }});
+
+  res
+    .status(200)
+    .json({
+      success: true
+    });
+
+});
+
+exports.delete_collection = asyncHandler(async function(req, res) {
+
+  dropCollection('users');
+
+  res
+    .status(200)
+    .json({
+      success: true,
+      msg: 'Collection dropped: users'
+    });
+  
 });

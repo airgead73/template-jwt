@@ -1,0 +1,7 @@
+// Show Hide Table 
+[data-show="cell-sm"] {
+  display: none;
+  @include media("(min-width: 567px)") {
+    display: table-cell;
+  }
+}

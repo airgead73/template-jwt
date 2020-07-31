@@ -168,7 +168,21 @@ exports.delete = asyncHandler(async function(req, res) {
       msg: `${book.title} is deleted.`
   }); 
 
- });  
+ }); 
+ 
+ exports.delete_many = asyncHandler(async function(req, res) {
+
+  const { ids } = req.body;
+
+  await Book.deleteMany({ _id: {$in: ids }});
+
+  res
+    .status(200)
+    .json({
+      success: true
+    });
+
+}); 
 
 exports.delete_collection = asyncHandler(async function(req, res) {
 

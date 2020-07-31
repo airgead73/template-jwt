@@ -24,6 +24,10 @@ router
     books_controller.delete_collection
   );
 
+router  
+  .route('/delete_many')
+  .delete(books_controller.delete_many); 
+
 router
   .route('/:bookID')
   .get(books_controller.read_one)

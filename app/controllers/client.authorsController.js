@@ -2,8 +2,8 @@ const asyncHandler = require('../middleware/handleAsync');
 const Author = require('../models/Author');
 
 /**
- * @route   GET /users
- * @desc    View users page
+ * @route   GET /authors
+ * @desc    View authors page
  * @access  private
  */
 exports.view_many = asyncHandler(async function(req, res, next) {

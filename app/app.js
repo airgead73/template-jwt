@@ -115,6 +115,7 @@ app.use('/api/books', require('./routes/api.booksRoutes'));
 app.use('/', require('./routes/client.indexRoutes'));
 app.use('/users', require('./routes/client.usersRoutes'));
 app.use('/authors', require('./routes/client.authorsRoutes'));
+app.use('/books', require('./routes/client.booksRoutes'));
 
 /**
  * @desc ERROR HANDLING

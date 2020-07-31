@@ -163,6 +163,20 @@ exports.delete = asyncHandler(async function(req, res) {
 
  });  
 
+exports.delete_many = asyncHandler(async function(req, res) {
+
+  const { ids } = req.body;
+
+  await Author.deleteMany({ _id: {$in: ids }});
+
+  res
+    .status(200)
+    .json({
+      success: true
+    });
+
+});
+
 exports.delete_collection = asyncHandler(async function(req, res) {
 
   dropCollection('authors');

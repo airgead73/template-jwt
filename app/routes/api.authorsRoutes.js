@@ -24,6 +24,10 @@ router
     authors_controller.delete_collection
   );
 
+router  
+  .route('/delete_many')
+  .delete(authors_controller.delete_many);
+
 router
   .route('/:authorID')
   .get(authors_controller.read_one)

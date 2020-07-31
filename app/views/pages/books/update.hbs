@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-12">
+    <form action="/api/authors/{{author._id}}?_method=PUT" method="POST" class="card mx-auto shadow-sm" id="form_author_update">
+    <div class="card-header">
+      <legend>update author</legend>
+    </div>    
+    <div class="card-body">
+      <div class="form-group">
+        <label for="fname">First Name:</label>
+        <input type="text" name="fname" class="form-control" value="{{author.fname}}">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name:</label>
+        <input type="text" name="lname" class="form-control" value="{{author.lname}}">
+      </div>  
+      <div class="form-group">
+        <label for="affiliation">Affiliation:</label>
+        <input type="text" name="affiliation" class="form-control" value="{{author.affiliation}}">
+      </div>         
+
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">update</button> 
+      <a href="/authors" class="btn btn-secondary">cancel</a>     
+    </div> 
+  </form>
+  </div>
+</div>

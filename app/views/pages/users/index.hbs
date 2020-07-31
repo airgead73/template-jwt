@@ -1,11 +1,81 @@
 <div class="row"> 
-  <div class="col-12 col-md-8 offset-md-2">
+  <div class="col-12 col-md-4 mb-3">
+    <form action="/api/users" method="POST" class="card mx-auto shadow-sm" id="form_user_add">
+      <div class="card-header form-row">
+        <div class="col">
+          <legend>add user</legend>
+        </div>
+        <div class="col text-right">
+          <button type="submit" class="btn btn-primary">add <i class="fal fa-user-plus"></i></button> 
+        </div>      
+      </div>
+      <div class="card-body form-row">
+        {{#if errors}}
+        <div class="alert alert-danger">
+          <ul>
+          {{#each errors}}
+            <li>{{this}}</li>
+          {{/each}}
+          </ul>
+        </div>
 
+        {{/if}}
+        <div class="form-group col-12">
+          <label for="name">Name:</label>
+          <input 
+            type="name" 
+            name="name" 
+            class="form-control"
+            autocomplete="off"
+            required
+          >      
+          <div class="invalid-feedback">Add valid name.</div>
+        </div>      
+        <div class="form-group col-12">
+          <label for="email">Email address:</label>
+          <input 
+            type="email" 
+            name="email" 
+            class="form-control"
+            autocomplete="off"
+            required
+          >        
+          <div class="invalid-feedback">Add valid email.</div>        
+        </div>
+        <div class="form-group col-12">
+          <label for="password">Password:</label>
+          <input 
+            type="password" 
+            name="password" 
+            class="form-control"
+            autocomplete="off"
+            required
+          >
+          <div class="invalid-feedback">Add valid password.</div>        
+        </div>
+        <div class="form-group col">
+          <label for="confirm_password">Confirm Password:</label>
+          <input 
+            type="password" 
+            name="confirm_password" 
+            class="form-control"
+            autocomplete="off"   
+            required
+          >       
+          <div class="invalid-feedback">Does not match password.</div>        
+        </div>      
+      </div>
+      <div class="card-footer">
+            
+      </div> 
+    </form>    
+  </div>
+  <div class="col-12 col-md-8">
     <table class="table-sm table-bordered w-100">
       <thead>
         <tr>
           <th class="text-center" width="45px;">
-            <button id="btn_delete_many" data-delete="authors" class="btn btn-link btn-sm" disabled>
+            <button id="btn_delete_many" data-delete="users" class="btn btn-link btn-sm" disabled>
               <i class="fal fa-trash-alt"></i>
             </button>
           </th>

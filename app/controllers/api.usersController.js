@@ -188,6 +188,8 @@ exports.delete_many = asyncHandler(async function(req, res) {
 
   const { ids } = req.body;
 
+  console.log('ids: ', ids);
+
   await User.deleteMany({ _id: {$in: ids }});
 
   res

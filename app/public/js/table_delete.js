@@ -33,42 +33,42 @@
 
   function handleDelete(e) {
     const boxes = getBoxesChecked();
-    const expenseIds = [];
+    const itemIds = [];
     boxes.forEach(box => {
 
-      let expenseId = box.id;
-      expenseId = expenseId.split('_');
-      expenseId = expenseId[1];
-      expenseIds.push(expenseId);
+      let itemId = box.id;
+      itemId = itemId.split('_');
+      itemId = itemId[1];
+      itemIds.push(itemId);
 
     });
 
-    fetchDelete(expenseIds);
+    fetchDelete(itemIds);
 
   };
 
   function fetchDelete(idsToDelete) {
 
-    const URL = `/api/${btnDelete.getAttribute('data-delete')}/delete_many`
+    const URL = `/api/${btnDelete.getAttribute('data-delete')}/delete_many`;
 
-    // fetch(URL, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Content-type': 'application/json',
-    //     'Accept': 'application/json' 
-    //    },
-    //    body: JSON.stringify({ ids: idsToDelete }) 
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //   const { success } = res;
-    //   if(success) {
-    //     window.location.reload(true);
-    //   }
-    // })
-    // .catch(err => console.log(err));
+    console.log(idsToDelete);
 
-    console.log(URL);
+    fetch(URL, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json' 
+       },
+       body: JSON.stringify({ ids: idsToDelete }) 
+    })
+    .then(res => res.json())
+    .then(res => {
+      const { success } = res;
+      if(success) {
+        window.location.reload(true);
+      }
+    })
+    .catch(err => console.log(err));
 
   };
 

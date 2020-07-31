@@ -1,108 +1,103 @@
-<div class="row">
-  <div class="col-12 mb-3">
-  {{!-- <form action="/api/users" method="POST" class="card mx-auto shadow-sm" id="form_user_add">
-    <div class="card-header form-row">
-      <div class="col">
-        <legend>add user</legend>
+<div class="row"> 
+  <div class="col-12 col-md-4 mb-3">
+    <form action="/api/authors" method="POST" class="card mx-auto shadow-sm" id="form_author_add">
+      <div class="card-header form-row">
+        <div class="col">
+          <legend>add author</legend>
+        </div>
+        <div class="col text-right">
+          <button type="submit" class="btn btn-primary">add <i class="fal fa-user-plus"></i></button> 
+        </div>      
       </div>
-      <div class="col text-right">
-        <button type="submit" class="btn btn-primary">add <i class="fal fa-user-plus"></i></button> 
-      </div>      
-    </div>
-    <div class="card-body form-row">
-      {{#if errors}}
-      <div class="alert alert-danger">
-        <ul>
-        {{#each errors}}
-          <li>{{this}}</li>
-        {{/each}}
-        </ul>
-      </div>
+      <div class="card-body form-row">
+        {{#if errors}}
+        <div class="alert alert-danger">
+          <ul>
+          {{#each errors}}
+            <li>{{this}}</li>
+          {{/each}}
+          </ul>
+        </div>
 
-      {{/if}}
-      <div class="form-group col">
-        <label for="name">Name:</label>
-        <input 
-          type="name" 
-          name="name" 
-          class="form-control"
-          autocomplete="off"
-          required
-        >      
-        <div class="invalid-feedback">Add valid name.</div>
-      </div>      
-      <div class="form-group col">
-        <label for="email">Email address:</label>
-        <input 
-          type="email" 
-          name="email" 
-          class="form-control"
-          autocomplete="off"
-          required
-        >        
-        <div class="invalid-feedback">Add valid email.</div>        
+        {{/if}}
+        <div class="form-group col-12">
+          <label for="fname">First Name:</label>
+          <input 
+            type="text" 
+            name="fname" 
+            class="form-control"
+            autocomplete="off"
+            placeholder="add first name"
+            required
+          >      
+          <div class="invalid-feedback">Add valid name.</div>
+        </div>     
+        <div class="form-group col-12">
+          <label for="lname">Last Name:</label>
+          <input 
+            type="text" 
+            name="lname" 
+            class="form-control"
+            autocomplete="off"
+            placeholder="add last name"
+            required
+          >      
+          <div class="invalid-feedback">Add valid name.</div>
+        </div>          
+        <div class="form-group col-12">
+          <label for="affiliation">Affiliation:</label>
+          <input 
+            type="text" 
+            name="affiliation" 
+            class="form-control"
+            autocomplete="off"
+            placeholder="add affiliation"
+            required
+          >        
+          <div class="invalid-feedback">Add affiliation.</div>        
+        </div>
+    
       </div>
-      <div class="form-group col">
-        <label for="password">Password:</label>
-        <input 
-          type="password" 
-          name="password" 
-          class="form-control"
-          autocomplete="off"
-          required
-        >
-        <div class="invalid-feedback">Add valid password.</div>        
-      </div>
-      <div class="form-group col">
-        <label for="confirm_password">Confirm Password:</label>
-        <input 
-          type="password" 
-          name="confirm_password" 
-          class="form-control"
-          autocomplete="off"   
-          required
-        >       
-        <div class="invalid-feedback">Does not match password.</div>        
-      </div>      
-    </div>
-    <div class="card-footer">
-           
-    </div> 
-  </form> --}}
-  </div>  
-  <div class="col-12">
-  <table class="table table-bordered table-sm">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th colspan="2">Affiliation</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each authors}}
-      <tr>
-        <td>{{this.listing}}</td>
-        <td>{{this.affiliation}}</td>
-        <td class="text-center" width="100px;">
-          <a class="btn btn-link btn-sm" href="/authors/{{this._id}}" title="see details for {{this.listing}}">
-            <i class="fal fa-edit fa-sm"></i>
-          </a>
-          <button
-            class="btn btn-link btn-sm"
-            data-toggle="modal" 
-            data-target="#deleteUserModal" 
-            data-user="{{this.listing}}"
-            data-action="/api/authors/{{this._id}}?_method=DELETE"
-            title="delete {{this.listing}}"
-          >
-            <i class="fal fa-times fa-sm"></i>
-          </button>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>    
-   
+      <div class="card-footer">
+            
+      </div> 
+    </form>    
+  </div>
+  <div class="col-12 col-md-8">
+    <table class="table-sm table-bordered w-100">
+      <thead>
+        <tr>
+          <th class="text-center" width="45px;">
+            <button id="btn_delete_many" data-delete="authors" class="btn btn-link btn-sm" disabled>
+              <i class="fal fa-trash-alt"></i>
+            </button>
+          </th>
+          <th>Name 
+            <a href="/authors?sort=lname"><i class="fal fa-long-arrow-up fa-sm"></i></a>
+            <a href="/authors?sort=-lname"><i class="fal fa-long-arrow-down fa-sm"></i></a>
+          </th>
+          <th colspan="2" data-show="cell-sm">Affiliation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each authors}}
+        <tr id="row_{{this.id}}">
+          <td class="text-center">
+            <input type="checkbox" name="to_delete" id="delete_{{this.id}}">
+          </td>
+          <td>{{this.fname}} {{this.lname}}</td>
+          <td data-show="cell-sm">{{this.affiliation}}</td>
+          <td class="text-center" width="50px;">
+            <a href="/authors/{{this._id}}" title="review and update {{this.fname}} {{this.fname}}">
+              <i class="fal fa-edit"></i>
+            </a>
+          </td>
+        </tr>
+
+        {{/each}}
+      </tbody>
+    </table>  
   </div>
 </div>
+
 

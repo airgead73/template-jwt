@@ -20,6 +20,12 @@ const { dropCollection } = require('../util/db');
 
   await author.save();
 
+  if(res.locals.res_html) {
+    return res
+      .status(200)
+      .redirect('/authors');
+  }
+
   res
     .status(200)
     .json({
@@ -38,7 +44,7 @@ const { dropCollection } = require('../util/db');
 
 exports.read_many = asyncHandler(async function(req, res) {
 
-  //const { success, count, data } = res.locals.query_results;  
+  const { success, count, data } = res.locals.query_results;  
 
   res
     .status(200)

@@ -21,7 +21,7 @@ router
     user_controller.view_one
   );
 
-  router
+router
   .route('/:userID/update')
   .get(
     user_controller.view_update

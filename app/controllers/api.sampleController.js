@@ -21,17 +21,15 @@ exports.create = asyncHandler(async function(req, res) {
 
   await sample.save();
 
-  console.log(res.locals.res_json);
-
   if(res.locals.res_json) {
     return res
     .status(200)
     .json({
       success: true,
       msg: 'Create an sample.',
-      author
-    })
-  }
+      sample
+    });
+  }  
 
   res
     .status(200)
@@ -55,7 +53,7 @@ exports.read_many = asyncHandler(async function(req, res) {
       success,
       msg: 'Read samples.',
       count,
-      authors: data
+      samples: data
     })
 
  }); 

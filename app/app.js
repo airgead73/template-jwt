@@ -110,6 +110,7 @@ app.use('/api/users', require('./routes/api.usersRoutes'));
 app.use('/api/auth', require('./routes/api.authRoutes'));
 app.use('/api/authors', require('./routes/api.authorsRoutes'));
 app.use('/api/books', require('./routes/api.booksRoutes'));
+app.use('/api/samples', require('./routes/api.sampleRoutes'));
 
 // client
 app.use('/', require('./routes/client.indexRoutes'));

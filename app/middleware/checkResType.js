@@ -2,11 +2,12 @@ const { ISDEV } = require('../config/config');
 
 const checkResType = function(req, res, next) {
   
-  let resType;
   if((req.headers.accept).includes('json')) {
     res.locals.res_json = true;
+    res.locals.res_html = false;
   } else {
     res.locals.res_html = true;
+    res.locals.res_json = false;
   }
 
   if(ISDEV) {

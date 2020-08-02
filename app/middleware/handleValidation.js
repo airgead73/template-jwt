@@ -30,6 +30,14 @@ const validationRules = (method) => {
         body('affiliation').optional()
       ];
       break;
+    case 'createSample':
+      return [
+        body('name', 'Provide valid entry').not().isEmpty().isLength({ max: 100 }).trim().escape(),
+        body('status', "Status should be 'active' or 'inactive'.").not().isEmpty().matches(/\b(?:active|inactive)\b/),
+        body('desc', 'Description should be less than 100 characters').optional().isLength({ max: 100 }),
+        body('due', 'Provide valid entry').optional()
+      ];
+      break;
     case 'signinUser':
       return [
         body('email', 'Enter valid email.').isEmail().normalizeEmail(),
@@ -43,12 +51,22 @@ const validate = (req, res, next) => {
   if (errors.isEmpty()) {
     return next();
   }
-  const extractedErrors = [];
-  //errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
+  const extractedErrors = [];  
   errors.array().map(err => extractedErrors.push(err.msg));
+
+  if(res.locals.res_json) {
+    return res
+      .status(404)
+      .json({
+        success: false,
+        errors: extractedErrors
+      });
+  }
+
   res.locals.error_arr = extractedErrors;
   res.locals.validation_fail = true;
   return next();
+
 }
 
 module.exports = {
